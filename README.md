@@ -53,6 +53,7 @@ This confirmed that the SMB service was reachable on the target.
 
 ### Evidence
 The Nmap scan provided evidence that TCP port `445` was open on the Windows 7 endpoint and that the Microsoft-DS (SMB) service was accessible.
+
 ![SMB Service Verification](screenshots/01-smb-port-445.png)
 
 ### Result
@@ -62,4 +63,5 @@ The target was reachable from the Kali Linux machine.
 
 Next Step
 With SMB confirmed as accessible, the next step was to simulate SMB authentication attempts against the Windows 7 endpoint using the smbclient utility.
+
 ---
