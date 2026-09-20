@@ -65,3 +65,35 @@ Next Step
 With SMB confirmed as accessible, the next step was to simulate SMB authentication attempts against the Windows 7 endpoint using the smbclient utility.
 
 ---
+
+# 2. SMB Authentication Simulation
+
+After confirming SMB availability, I used `smbclient` to interact with the Windows SMB service.
+
+The lab intentionally generated multiple failed authentication attempts against the test account `labuser`.
+
+### Command
+
+```bash
+smbclient //192.168.1.13/IPC$ -U 'labuser%Wrong Password123!'
+```
+The authentication attempt returned:
+
+```text
+NT_STATUS_LOGON_FAILURE
+```
+### Evidence
+
+The Kali Linux terminal showed the SMB authentication attempt against the Windows 7 `IPC$` share. The failed authentication generated an `NT_STATUS_LOGON_FAILURE` response, confirming that the authentication attempt was unsuccessful.
+
+![SMB Authentication Simulation](screenshots/02-smb-authentication.png)
+
+### Result
+
+The SMB authentication attempt failed as expected and generated a Windows Security Event ID `4625`, which was later detected by Wazuh.
+
+### Next Step
+
+The next step was to investigate the generated Windows Security Event ID `4625` and identify the source IP, targeted account, and logon type.
+
+---
