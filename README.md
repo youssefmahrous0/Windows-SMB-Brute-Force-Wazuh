@@ -144,15 +144,18 @@ Description: Logon failure - Unknown user or bad password.
 ```
 During the simulation, multiple authentication failure events were observed in Wazuh.
 
-# Result
+### Result
+
 Wazuh successfully received and detected the Windows Security Event ID 4625. The alert was triggered by Rule ID 60122, confirming that the failed authentication events were successfully collected and processed by the Wazuh Manager.
 
-# Evidence
+### Evidence
+
 ![Wazuh Detection](screenshots/04-wazuh-alert.png)
 
 The Wazuh Security Events dashboard displayed the detected authentication failures and showed Rule ID 60122 with Level 5.
 
-# Next Step
+### Next Step
+
 The next step was to analyze the Wazuh event details to identify the source IP address, workstation, targeted account, logon type, and authentication package.
 
 ---
