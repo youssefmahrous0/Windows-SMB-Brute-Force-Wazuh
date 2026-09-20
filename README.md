@@ -159,3 +159,51 @@ The Wazuh Security Events dashboard displayed the detected authentication failur
 The next step was to analyze the Wazuh event details to identify the source IP address, workstation, targeted account, logon type, and authentication package.
 
 ---
+
+# 5. Source and Target Investigation
+
+The investigation established the following:
+
+### Source
+```text
+Host: KALI
+IP: 192.168.1.7
+```
+### Target
+```text
+Host: Windows 7
+IP: 192.168.1.13
+```
+### Target Account
+```text
+labuser
+```
+The correlation between the source IP, workstation, and targeted account allowed the authentication alerts to be investigated as a specific activity rather than isolated failed-login events.
+
+### Investigation Summary
+
+| Investigation Item | Result |
+|---|---|
+| Source Host | `KALI` |
+| Source IP | `192.168.1.7` |
+| Target Host | Windows 7 |
+| Target IP | `192.168.1.13` |
+| Target Account | `labuser` |
+| Protocol | SMB |
+| Destination Port | `445/TCP` |
+| Failed Event | `4625` |
+| Logon Type | `3 - Network` |
+| Authentication | `NTLM` |
+
+### Result
+The investigation identified `KALI` (`192.168.1.7`) as the source of the SMB authentication attempts against the Windows 7 endpoint (`192.168.1.13`). The targeted account was `labuser`, with the activity occurring over SMB on TCP port `445`.
+
+### Evidence
+The Wazuh event details provided the source IP, workstation name, targeted username, logon type, and authentication package used during the failed authentication activity.
+
+![Wazuh Event Details](screenshots/05-wazuh-event-details.png)
+
+### Next Step
+The next step was to investigate the subsequent successful authentication and analyze Windows Security Event ID 4624 to correlate it with the previous failed authentication attempts.
+
+---
