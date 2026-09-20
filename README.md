@@ -207,3 +207,44 @@ The Wazuh event details provided the source IP, workstation name, targeted usern
 The next step was to investigate the subsequent successful authentication and analyze Windows Security Event ID 4624 to correlate it with the previous failed authentication attempts.
 
 ---
+
+# 6. Successful Authentication — Event ID 4624
+
+After the failed authentication attempts, a valid authentication was performed using the test account.
+
+Windows generated Event ID `4624`.
+
+The event showed:
+
+| Field | Value |
+|---|---|
+| Account | `labuser` |
+| Logon Type | `3` |
+| Workstation | `KALI` |
+| Source IP | `192.168.1.7` |
+| Authentication | `NTLM` |
+| Package | `NTLM V2` |
+
+This allowed the activity to be correlated as:
+
+```text
+4625 Failed Logon
+        ↓
+4625 Failed Logon
+        ↓
+4625 Failed Logon
+        ↓
+4624 Successful Logon
+```
+
+### Result
+The successful authentication event was correlated with the previous failed authentication attempts from the same source and targeted account.
+
+### Evidence
+
+Windows Event Viewer captured Event ID `4624`, showing the successful network authentication from `KALI` (`192.168.1.7`) using the `labuser` account.
+
+![Windows Event ID 4624](screenshots/06-windows-event-4624.png)
+
+### Next Step
+The next step was to build a timeline of the observed authentication events and correlate the failed and successful logons.
