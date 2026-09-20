@@ -367,3 +367,45 @@ T1110
 T1021.002
 ```
 ---
+
+# 10. Key Findings
+
+- Multiple failed SMB authentication attempts were observed against the Windows 7 endpoint.
+- The attempts targeted the `labuser` account.
+- The source workstation was identified as `KALI`.
+- The source IP address was `192.168.1.7`.
+- Windows generated Event ID `4625` for the failed authentication attempts.
+- Wazuh detected the events using Rule ID `60122`.
+- A subsequent successful authentication generated Event ID `4624`.
+- The observed activity was consistent with the controlled password-guessing simulation performed in the lab.
+- SMB/IPC$ access was observed, but no remote command execution or confirmed lateral movement was demonstrated.
+  
+  ---
+
+  # 11. Skills Demonstrated
+
+- SOC Alert Investigation
+- SIEM Monitoring with Wazuh
+- Windows Event Log Analysis
+- Authentication Event Analysis
+- SMB Investigation
+- Source IP Identification
+- Event Correlation
+- MITRE ATT&CK Mapping
+- Incident Investigation Documentation
+
+  ---
+
+  # 12. Conclusion
+
+This lab demonstrated a complete SOC investigation workflow for SMB authentication activity.
+
+I successfully simulated authentication failures, analyzed Windows Security Event IDs `4625` and `4624`, investigated the source and targeted account, validated Wazuh detection, correlated authentication events, and mapped the observed behavior to MITRE ATT&CK.
+
+The exercise reinforced the importance of correlating authentication failures with subsequent successful logons rather than investigating individual events in isolation.
+
+--- 
+
+## 📖 Medium Article
+
+[Read the full investigation on Medium](https://medium.com/@jomahrous0/detecting-smb-brute-force-activity-with-wazuh-a-windows-soc-investigation-8a186203d5fe)
