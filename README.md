@@ -329,3 +329,41 @@ The investigation evidence included the repeated failed authentication events (`
 The next step was to document the collected evidence and summarize the key findings from the investigation.
 
 ---
+
+# 9. Evidence Collected
+
+The investigation produced the following evidence:
+
+### Evidence 1 — SMB Service Verification
+
+```text
+TCP/445 → Open
+```
+
+### Evidence 2 — SMB Authentication Activity
+```text
+Kali → Windows 7
+```
+### Evidence 3 — Windows Event ID 4625
+```text
+Failed authentication
+User: labuser
+Source: 192.168.1.7
+```
+### Evidence 4 — Wazuh Alert
+```text
+Rule ID: 60122
+Level: 5
+```
+### Evidence 5 — Windows Event ID 4624
+```text
+Successful authentication
+User: labuser
+Source: 192.168.1.7
+```
+### Evidence 6 — MITRE ATT&CK Mapping
+```text
+T1110
+T1021.002
+```
+---
