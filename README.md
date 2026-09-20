@@ -43,3 +43,23 @@ Before starting the authentication simulation, I verified that SMB was accessibl
 
 ```bash
 nmap -Pn -p 445 192.168.1.13
+```
+
+The scan confirmed:
+```text
+445/tcp open microsoft-ds
+```
+This confirmed that the SMB service was reachable on the target.
+
+### Evidence
+The Nmap scan provided evidence that TCP port `445` was open on the Windows 7 endpoint and that the Microsoft-DS (SMB) service was accessible.
+![SMB Service Verification](screenshots/01-smb-port-445.png)
+
+### Result
+TCP port 445 was open.
+The Microsoft-DS (SMB) service was accessible on the Windows 7 endpoint.
+The target was reachable from the Kali Linux machine.
+
+Next Step
+With SMB confirmed as accessible, the next step was to simulate SMB authentication attempts against the Windows 7 endpoint using the smbclient utility.
+---
