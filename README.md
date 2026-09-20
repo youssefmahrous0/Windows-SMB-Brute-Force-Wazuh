@@ -130,3 +130,29 @@ The Windows Event Viewer captured Event ID `4625` and showed the failed authenti
 The next step was to verify whether Wazuh successfully collected and detected the Windows Event ID `4625` and generated a corresponding security alert.
 
 ---
+
+# 4. Wazuh Detection
+
+The Windows events were collected by the Wazuh Agent and forwarded to the Wazuh Manager.
+
+Wazuh detected the failed authentication activity using:
+
+```text
+Rule ID: 60122
+Level: 5
+Description: Logon failure - Unknown user or bad password.
+```
+During the simulation, multiple authentication failure events were observed in Wazuh.
+
+# Result
+Wazuh successfully received and detected the Windows Security Event ID 4625. The alert was triggered by Rule ID 60122, confirming that the failed authentication events were successfully collected and processed by the Wazuh Manager.
+
+# Evidence
+![Wazuh Detection](screenshots/04-wazuh-alert.png)
+
+The Wazuh Security Events dashboard displayed the detected authentication failures and showed Rule ID 60122 with Level 5.
+
+# Next Step
+The next step was to analyze the Wazuh event details to identify the source IP address, workstation, targeted account, logon type, and authentication package.
+
+---
