@@ -248,3 +248,84 @@ Windows Event Viewer captured Event ID `4624`, showing the successful network au
 
 ### Next Step
 The next step was to build a timeline of the observed authentication events and correlate the failed and successful logons.
+
+---
+
+# 7. Investigation Timeline
+
+The documented sequence of failed authentication attempts began around:
+
+```text
+19 September 2026 – 2:10:43 PM
+```
+
+The investigation identified:
+
+```text
+Source:
+192.168.1.7 / KALI
+
+Target:
+192.168.1.13 / Windows 7
+
+Account:
+labuser
+
+Protocol:
+SMB
+
+Port:
+445/TCP
+
+Logon Type:
+3 - Network
+```
+
+### Result
+The timeline showed multiple failed SMB authentication attempts originating from KALI (192.168.1.7) against the labuser account on the Windows 7 endpoint, followed by a successful authentication event.
+
+### Evidence
+The investigation timeline was reconstructed using the Windows Security Events 4625 (failed logon) and 4624 (successful logon), together with the corresponding Wazuh alerts.
+
+### Next Step
+The next step was to map the observed authentication activity to the relevant MITRE ATT&CK techniques.
+
+---
+
+# 8. MITRE ATT&CK Mapping
+
+The observed behavior was mapped to relevant MITRE ATT&CK techniques.
+
+## T1110 — Brute Force
+
+The repeated failed authentication attempts against the same account, followed by a successful authentication from the same source, were consistent with the controlled password-guessing simulation performed in the lab.
+
+## T1021.002 — SMB/Windows Admin Shares
+
+The activity involved:
+
+```text
+SMB
+TCP/445
+IPC$
+```
+This is relevant to:
+```text
+T1021.002 — SMB/Windows Admin Shares
+```
+The evidence collected in this lab demonstrates SMB authentication/access to ```text IPC$ ```. It does not demonstrate remote command execution or confirmed lateral movement.
+
+### Result
+
+The observed SMB authentication activity was mapped to MITRE ATT&CK techniques `T1110 — Brute Force` and `T1021.002 — SMB/Windows Admin Shares`. The evidence supports a controlled password-guessing simulation and SMB authentication/access to `IPC$`.
+
+### Evidence
+
+The investigation evidence included the repeated failed authentication events (`4625`), the successful authentication event (`4624`), and the SMB activity over TCP port `445`.
+
+![MITRE ATT&CK Mapping](screenshots/07-mitre-attack.png)
+
+### Next Step
+The next step was to document the collected evidence and summarize the key findings from the investigation.
+
+---
