@@ -97,3 +97,35 @@ The SMB authentication attempt failed as expected and generated a Windows Securi
 The next step was to investigate the generated Windows Security Event ID `4625` and identify the source IP, targeted account, and logon type.
 
 ---
+
+### 3. Windows Security Event ID 4625
+
+Windows recorded the failed authentication attempts as Event ID 4625.
+
+The event provided important investigation details:
+
+Field	Value
+Event ID	4625
+Account	labuser
+Source IP	192.168.1.7
+Workstation	KALI
+Logon Type	3 - Network
+Authentication	NTLM
+
+The Logon Type 3 indicates a network logon, which is consistent with the SMB authentication activity performed in the lab.
+
+### Evidence
+
+Windows Event Viewer captured Event ID `4625`, showing the failed authentication attempt against the `labuser` account. The event identified `KALI` as the source workstation with IP address `192.168.1.7` and recorded the logon type as `3 - Network`.
+
+![Windows Security Event 4625](screenshots/03-windows-event-4625.png)
+
+### Result
+
+The Windows Security Event Log confirmed that the SMB authentication attempt from the Kali Linux machine failed for the `labuser` account.
+
+### Next Step
+
+The next step was to verify whether Wazuh successfully collected and detected the Event ID `4625` from the Windows 7 endpoint.
+
+---
