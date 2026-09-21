@@ -144,7 +144,7 @@ The scan confirmed that TCP port `445` was open and that the Microsoft-DS/SMB se
 
 ### Evidence
 
-![SMB Service Verification](screenshots/smb-service-verification.png)
+![SMB Service Verification](screenshots/01-smb-port-445.png)
 
 ### SOC Relevance
 
@@ -180,7 +180,7 @@ This generated Windows Security Event ID `4625`, which was subsequently collecte
 
 ### Evidence
 
-![SMB Authentication Simulation](screenshots/smb-authentication-simulation.png)
+![SMB Authentication Simulation](screenshots/02-smb-authentication.png)
 
 ---
 
@@ -209,7 +209,7 @@ The event provided important investigation details.
 
 ### Evidence
 
-![Windows Event ID 4625](screenshots/windows-event-4625.png)
+![Windows Event ID 4625](screenshots/03-windows-event-4625.png)
 
 ### Investigation Value
 
@@ -239,7 +239,7 @@ Multiple authentication failure events were observed during the simulation.
 
 ### Evidence
 
-![Wazuh Security Events](screenshots/wazuh-security-events.png)
+![Wazuh Security Events](screenshots/04-wazuh-alert.png)
 
 ### Detection Result
 
@@ -313,7 +313,7 @@ SMB / TCP 445
 
 ### Evidence
 
-![Source and Target Investigation](screenshots/source-target-investigation.png)
+![Source and Target Investigation](screenshots/05-wazuh-event-details.png)
 
 ---
 
@@ -352,7 +352,7 @@ This allowed the authentication activity to be correlated as:
 
 ### Evidence
 
-![Windows Event ID 4624](screenshots/windows-event-4624.png)
+![Windows Event ID 4624](screenshots/06-windows-event-4624.png)
 
 ### Investigation Significance
 
@@ -419,9 +419,6 @@ Event ID 4624
 | Failed Authentication     | Event `4625`               |
 | Successful Authentication | Event `4624`               |
 
-### Evidence
-
-![Investigation Timeline](screenshots/investigation-timeline.png)
 
 ---
 
