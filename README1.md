@@ -419,9 +419,6 @@ Event ID 4624
 | Failed Authentication     | Event `4625`               |
 | Successful Authentication | Event `4624`               |
 
-### Evidence
-
-![Investigation Timeline](screenshots/07-mitre-attack.png)
 
 ---
 
