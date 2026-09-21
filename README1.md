@@ -1,6 +1,6 @@
 # 🔐 Detecting SMB Brute-Force Activity with Wazuh
 
-A hands-on **SOC home lab** demonstrating SMB authentication attack simulation, Windows Security Event Log analysis, Wazuh SIEM detection, event correlation, investigation, evidence collection, and MITRE ATT&CK mapping.
+A hands-on SOC home lab demonstrating SMB authentication attack simulation, Windows Security Event Log analysis, Wazuh SIEM detection, event correlation, investigation, evidence collection, and MITRE ATT&CK mapping.
 
 > **Attack Simulation → Detection → Investigation → Evidence → Correlation → MITRE ATT&CK → Documentation**
 
@@ -8,20 +8,20 @@ A hands-on **SOC home lab** demonstrating SMB authentication attack simulation, 
 
 ## 📌 Project Overview
 
-In this SOC home lab, I simulated repeated failed **SMB authentication attempts** against a Windows 7 endpoint and investigated the resulting activity using **Wazuh SIEM**.
+In this SOC home lab, I simulated repeated failed SMB authentication attempts against a Windows 7 endpoint and investigated the resulting activity using Wazuh SIEM.
 
 The investigation focused on:
 
 * SMB service verification
-* Authentication attack simulation
+* SMB authentication attack simulation
 * Windows Security Event ID `4625`
-* Windows Security Event ID `4624`
 * Wazuh alert detection
 * Source and target identification
 * Authentication event correlation
+* Windows Security Event ID `4624`
 * Timeline reconstruction
 * MITRE ATT&CK mapping
-* Evidence-based investigation
+* Evidence collection
 * SOC investigation documentation
 
 The primary objective was to understand how a SOC analyst can detect, investigate, and correlate authentication activity instead of analyzing individual alerts in isolation.
@@ -32,8 +32,8 @@ The primary objective was to understand how a SOC analyst can detect, investigat
 
 The main objectives of this lab were to:
 
-* Simulate SMB authentication failures in a controlled environment.
 * Verify SMB availability on the Windows endpoint.
+* Simulate SMB authentication failures in a controlled environment.
 * Analyze Windows Security Event ID `4625`.
 * Identify the source IP, workstation, targeted account, and logon type.
 * Validate Wazuh detection of failed authentication activity.
@@ -144,7 +144,7 @@ The scan confirmed that TCP port `445` was open and that the Microsoft-DS/SMB se
 
 ### Evidence
 
-![SMB Service Verification](screenshots/01-smb-port-445.png)
+![SMB Service Verification](screenshots/smb-service-verification.png)
 
 ### SOC Relevance
 
@@ -180,7 +180,7 @@ This generated Windows Security Event ID `4625`, which was subsequently collecte
 
 ### Evidence
 
-![SMB Authentication Simulation](screenshots/02-smb-authentication.png)
+![SMB Authentication Simulation](screenshots/smb-authentication-simulation.png)
 
 ---
 
@@ -205,11 +205,11 @@ The event provided important investigation details.
 
 ### Logon Type
 
-`Logon Type 3` represents a **network logon**, which is consistent with the SMB authentication activity performed in this lab.
+`Logon Type 3` represents a network logon, which is consistent with the SMB authentication activity performed in this lab.
 
 ### Evidence
 
-![Windows Event ID 4625](screenshots/03-windows-event-4625.png)
+![Windows Event ID 4625](screenshots/windows-event-4625.png)
 
 ### Investigation Value
 
@@ -239,7 +239,7 @@ Multiple authentication failure events were observed during the simulation.
 
 ### Evidence
 
-![Wazuh Security Events](screenshots/04-wazuh-alert.png)
+![Wazuh Security Events](screenshots/wazuh-security-events.png)
 
 ### Detection Result
 
@@ -313,7 +313,7 @@ SMB / TCP 445
 
 ### Evidence
 
-![Wazuh Event Details](screenshots/05-wazuh-event-details.png)
+![Source and Target Investigation](screenshots/source-target-investigation.png)
 
 ---
 
@@ -352,7 +352,7 @@ This allowed the authentication activity to be correlated as:
 
 ### Evidence
 
-![Windows Event ID 4624](screenshots/06-windows-event-4624.png)
+![Windows Event ID 4624](screenshots/windows-event-4624.png)
 
 ### Investigation Significance
 
@@ -419,6 +419,9 @@ Event ID 4624
 | Failed Authentication     | Event `4625`               |
 | Successful Authentication | Event `4624`               |
 
+### Evidence
+
+![Investigation Timeline](screenshots/investigation-timeline.png)
 
 ---
 
@@ -563,7 +566,7 @@ T1021.002
 
 # 🛡️ SOC Analyst Investigation Workflow
 
-This lab demonstrates a practical SOC investigation workflow:
+This lab demonstrates a practical SOC investigation workflow.
 
 ### 1. Alert Triage
 
@@ -676,7 +679,7 @@ I successfully:
 
 The exercise reinforced an important SOC investigation principle:
 
-> **A single authentication failure may provide limited context, but correlating repeated failures with subsequent authentication activity can reveal a much clearer picture of the incident.**
+> A single authentication failure may provide limited context, but correlating repeated failures with subsequent authentication activity can reveal a much clearer picture of the incident.
 
 ---
 
